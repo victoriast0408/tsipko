@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Від курчати до прибутку: секрети вдалого курника</title>
+  <link rel="icon" type="image/png" href="chicken.png">
+  <meta name="description" content="Практичний курс Олени (30+ років досвіду): від інкубатора та годівлі до здоров'я, зберігання м'яса й отримання прибутку.">
+
+  <!-- Bootstrap 5 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== Palette sampled from your banner ===== */
+    :root{
+      --green-deep:#4a6d1d;
+      --green:#6ea62d;
+      --lime:#dbe86b;
+      --orange:#ff7a2f;
+      --red:#e43c2d;
+      --cream:#fffaf2;
+      --ink:#13210a;
+    }
+
+    html,body{height:100%}
+    body{
+      font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+      color:var(--ink);
+      background: linear-gradient(180deg,#f7fbef 0%, #eef6df 100%);
+      scroll-behavior:smooth;
+    }
+
+    /* ===== Navbar ===== */
+    .navbar{
+      --bs-navbar-color:#fff;
+      --bs-navbar-hover-color:#fff;
+      --bs-navbar-brand-color:#fff;
+      --bs-navbar-brand-hover-color:#fff;
+      background: rgba(24,48,10,.4);
+      backdrop-filter: blur(8px);
+      transition: background .3s ease;
+    }
+    .navbar.scrolled{ background: rgba(24,48,10,.85); }
+
+    .btn-accent{
+      background: linear-gradient(135deg,var(--red),var(--orange));
+      color:#fff; border:none; font-weight:800;
+      box-shadow: 0 8px 18px rgba(228,60,45,.3);
+      transition:.25s ease;
+    }
+    .btn-accent:hover{ transform: translateY(-2px); box-shadow: 0 10px 22px rgba(228,60,45,.4); }
+
+    .btn-ghost{
+      border:2px solid #fff; color:#fff; font-weight:700;
+    }
+    .btn-ghost:hover{ background:#fff; color:var(--green-deep); }
+
+    /* ===== Hero ===== */
+    .hero{
+      position:relative; padding:4rem 0; color:#fff;
+      background: linear-gradient(160deg, #335b16 0%, #6ea62d 100%);
+      overflow:hidden;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background: radial-gradient(1100px 600px at 20% 40%, rgba(0,0,0,.25), transparent 60%);
+    }
+    .hero-row{ min-height: 72vh; }
+
+    .glass{
+      background: rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius: 18px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+      backdrop-filter: blur(6px);
+    }
+    .chip{background: rgba(255,255,255,.18); border:1px solid rgba(255,255,255,.25); padding:.35rem .7rem; border-radius:999px; font-size:.85rem}
+
+    h1.hero-title{font-weight:800; line-height:1.05}
+    @media (min-width:992px){ h1.hero-title{font-size: clamp(42px,5vw,70px);} }
+    @media (max-width:991.98px){ h1.hero-title{font-size: 38px;} }
+
+    /* ===== Sections ===== */
+    section{ padding: 5rem 0; }
+    .section-title span{ color:var(--green-deep) }
+    .subtitle{ color:#577a2a }
+
+    .card{
+      background:#fff; border:1px solid rgba(0,0,0,.06); border-radius:16px;
+      box-shadow:0 10px 30px rgba(0,0,0,.06);
+      transition:.35s ease;
+    }
+    .card:hover{ transform: translateY(-6px); box-shadow:0 14px 40px rgba(0,0,0,.08); }
+
+    .icon{
+      width:44px; height:44px; border-radius:12px; display:inline-flex; align-items:center; justify-content:center;
+      background: linear-gradient(135deg,var(--lime),#a6d632);
+      color:#193006; font-size:22px;
+      box-shadow: 0 10px 20px rgba(110,166,45,.25);
+    }
+
+    /* ===== Section backgrounds ===== */
+    body{ background:#f4f7ef; }
+    #about{ background: linear-gradient(180deg,#f7ffe9,#eef6df); position:relative; z-index:0; padding: 6rem 0 6.5rem; }
+    #benefits{ background:#ffffff; padding: 6.5rem 0 5.5rem; }
+    #program{ background:#f9faf6; }
+    #format{ background:#ffffff; }
+    #price{ background:#f3f9e6; }
+    #faq{ background:#ffffff; }
+
+    /* ===== Reveal on scroll + basic animations ===== */
+    .reveal{ opacity:0; transform:none; transition: all .8s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible{ opacity:1; transform:none; }
+    @keyframes fadeSlideUp { from{opacity:0; transform: translateY(18px);} to{opacity:1; transform:none;} }
+    .animate-in{ animation: fadeSlideUp .8s ease-out both; }
+    .delay-1{ animation-delay:.1s; }
+    .delay-2{ animation-delay:.25s; }
+
+    .counter{ font-weight:800; font-size:2rem; color:var(--green-deep); }
+
+    /* ===== Footer ===== */
+    footer{ background:#14230a; color:#eaf6d2; }
+
+    /* Small helpers */
+    .muted{ color:#6a7d53 }
+    .stats-card{ min-height: 150px; display:flex; flex-direction:column; justify-content:center; }
+
+    /* Custom adjustments */
+    @media (min-width: 992px) {
+      .hero-content-container{ display:flex; align-items:stretch; }
+      .hero-content{ height:100%; display:flex; }
+      .hero-content .glass{ height:100%; display:flex; flex-direction:column; justify-content:flex-start; }
+      .hero .chip-row{ margin-bottom: 1.25rem; }
+      .hero-banner{ height:100%; display:flex; align-items:stretch; }
+      .hero-banner .glass{ height:100%; overflow:hidden; display:flex; }
+      .hero-banner img{ width:100%; height:100%; object-fit:contain; display:block; }
+      .stats-card{ height:100%; min-height: 150px; display:flex; flex-direction:column; justify-content:center; }
+      .author-card{ margin-top:0; height:auto; align-self:flex-start; }
+      .format-card{ margin-top:0; height:100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">Курник PRO</a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="text-white"><i class="bi bi-list" style="font-size:1.6rem"></i></span>
+    </button>
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link text-white" href="#about">Автор</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#benefits">Чому зараз</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#program">Програма</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#format">Формат</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#price">Вартість</a></li>
+        <li class="nav-item"><a class="nav-link text-white" href="#faq">FAQ</a></li>
+      </ul>
+      <a class="btn btn-accent ms-lg-3" data-bs-toggle="modal" href="#signup">Зареєструватися</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="container py-5">
+    <div class="row hero-row align-items-stretch g-4">
+      <div class="col-lg-7 hero-content-container">
+        <div class="hero-content animate-in">
+          <div class="glass p-4 p-md-5">
+            <div class="d-flex gap-2 flex-wrap chip-row">
+              <span class="chip">Курс з птахівництва</span>
+              <span class="chip">Автор: Олена • 30+ років досвіду</span>
+              <span class="chip">Практика + економіка</span>
+            </div>
+            <h1 class="hero-title">
+              Від курчати до прибутку: <span class="text-warning">секрети вдалого курника</span>
+            </h1>
+            <p class="lead mb-4">Запустіть або прокачайте власне міні-птахівництво: інкубатор, годівля, здоров'я, зберігання продукції та шлях до стабільного доходу.</p>
+            <div class="d-flex gap-2">
+              <a class="btn btn-accent btn-lg" data-bs-toggle="modal" href="#signup">Приєднатися</a>
+              <a class="btn btn-ghost btn-lg" href="#program">Деталі</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 hero-banner d-none d-lg-block animate-in delay-1">
+        <div class="glass p-3">
+          <img src="banner1.png" alt="Курник PRO" class="rounded-3">
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== AUTHOR ===== -->
+<section id="about" class="bg-lush py-5">
+  <div class="container">
+    <div class="row justify-content-center reveal">
+      <div class="col-lg-8 animate-in delay-1">
+        <span class="subtitle fw-semibold">Про автора</span>
+        <h2 class="section-title fw-bold">Олена - 30+ років практики</h2>
+        <p>Я - Олена: блогерка та фермерка, яка виростила не одну генерацію домашньої птиці. Працюю з гусьми й курами, а зараз свідомо обираю крос домінант через його продуктивність. На курсі ділюся перевіреними методами без зайвої теорії - лише те, що працює на практиці.</p>
+        <div class="row g-3">
+          <div class="col-sm-6">
+            <div class="card p-3 h-100 animate-in">
+              <div class="icon mb-2"><i class="bi bi-egg-fried"></i></div>
+              <div class="fw-bold">Реальний досвід</div>
+              <div class="muted small">Домінанти, профілактика канібалізму, міцна шкарлупа, вільний вигул та облаштування гнізд.</div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="card p-3 h-100 animate-in delay-1">
+              <div class="icon mb-2"><i class="bi bi-cash-coin"></i></div>
+              <div class="fw-bold">Погляд на прибуток</div>
+              <div class="muted small">Як перетворити хобі на дохід: від собівартості до збуту.</div>
+            </div>
+          </div>
+        </div>
+        <div class="card p-4 author-card animate-in mt-4" style="position:relative; z-index:2;">
+          <h5 class="fw-bold mb-3"><i class="bi bi-stars me-2"></i>Що ви отримаєте</h5>
+          <ul class="mb-0">
+            <li>Покрокові інструкції: інкубатор, випойка, годівля, профілактика хвороб.</li>
+            <li>Списки закупівель та рекомендації по кросах.</li>
+            <li>Шаблони та чек-листи догляду, графіки годівлі.</li>
+            <li>Поради з безпечного зберігання м'яса та ідей у кулінарії (тушонка тощо).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFITS / STATS ===== -->
+<section id="benefits" class="py-5">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-6 reveal animate-in">
+        <h2 class="section-title fw-bold">Чому <span>зараз</span> - найкращий час?</h2>
+        <ul class="list-unstyled mt-3">
+          <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Стабільний попит на яйця й м'ясо - навіть під час коливань ринку.</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Низький поріг входу - старт із 10–20 курей.</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Гнучко поєднується з основною роботою.</li>
+          <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i>Контроль за якістю та безпекою власних продуктів.</li>
+        </ul>
+      </div>
+      <div class="col-lg-6 reveal animate-in delay-1">
+        <div class="row text-center g-3 align-items-stretch">
+          <div class="col-6">
+            <div class="card p-4 stats-card animate-in">
+              <div class="counter" data-target="280">0</div>
+              <div class="small">яєць від несучки/рік</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card p-4 stats-card animate-in delay-1">
+              <div class="counter" data-target="30">0</div>
+              <div class="small">днів до окупності корму</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card p-4 stats-card animate-in delay-2">
+              <div class="counter" data-target="2">0</div>
+              <div class="small">год/день догляду</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="card p-4 stats-card animate-in delay-2">
+              <div class="counter" data-target="90">0</div>
+              <div class="small">% слухачів заробляють</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROGRAM ===== -->
+<section id="program" class="py-5">
+  <div class="container">
+    <div class="text-center mb-4">
+      <span class="subtitle fw-semibold">Програма</span>
+      <h2 class="section-title fw-bold">5 насичених занять</h2>
+      <p class="muted">Структуровано, практично, з прикладами з реального господарства.</p>
+    </div>
+
+    <div class="accordion reveal" id="prog">
+      <!-- Day 1 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="d1">
+          <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#c1">
+            <span class="badge text-bg-success me-2">Модуль 1</span>
+            Введення. Про себе  і початок розведення.
+          </button>
+        </h2>
+        <div id="c1" class="accordion-collapse collapse show" data-bs-parent="#prog">
+          <div class="accordion-body">
+            <ul>
+              <li>Мій шлях і чому зараз віддаю перевагу домінантам.</li>
+              <li>Переваги/недоліки кросу, профілактика канібалізму.</li>
+              <li>Як укріпляти яєчну шкарлупу.</li>
+              <li>Вільний вигул: лайфхаки безпеки.</li>
+              <li>Особливості облаштування гнізд для домінантів.</li>
+              <li>Коли й кому вигідні домінанти.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Day 2 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="d2">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c2">
+            <span class="badge text-bg-success me-2">Модуль 2</span>
+            Інкубатор: виведення курчат, профілактика падежу.
+          </button>
+        </h2>
+        <div id="c2" class="accordion-collapse collapse" data-bs-parent="#prog">
+          <div class="accordion-body">
+            <ul>
+              <li>Температурні режими, вологість, перевороти.</li>
+              <li>Секрети та деталі першої випойки різним видам домашньої птиці.</li>
+              <li>Що робити при кишкових хворобах: схеми та чек-лист спостереження.</li>
+              <li>Корм з перших днів і на перехідні етапи, підгодівлі.</li>
+              <li>Природні антибіотики та коли вони доречні.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Day 3 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="d3">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c3">
+            <span class="badge text-bg-success me-2">Модуль 3</span>
+            Зберігання м'яса домашньої птиці. Кулінарія з курячими тушонками.
+          </button>
+        </h2>
+        <div id="c3" class="accordion-collapse collapse" data-bs-parent="#prog">
+          <div class="accordion-body">
+            <ul>
+              <li>Безпечні способи охолодження й заморожування.</li>
+              <li>Стерилізація, тара, контроль температури.</li>
+              <li>Тушонка: базова технологія + ідеї використання в стравах.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Day 4 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="d4">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c4">
+            <span class="badge text-bg-success me-2">Модуль 4</span>
+            Відповіді на найпоширеніші запитання.
+          </button>
+        </h2>
+        <div id="c4" class="accordion-collapse collapse" data-bs-parent="#prog">
+          <div class="accordion-body">
+            <ul>
+              <li>Коли краще купувати та якого віку брати курчат.</li>
+              <li>Що робити при перших ознаках хвороб.</li>
+              <li>Правильне облаштування та догляд за курятником.</li>
+              <li>Вітаміни в раціоні: коли і які.</li>
+              <li>Скільки разів і як годувати в різні періоди росту.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <!-- Day 5 -->
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="d5">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#c5">
+            <span class="badge text-bg-success me-2">Модуль 5</span>
+            Отримання прибутку: собівартість, ціноутворення, збут, підписки та повторні продажі.
+          </button>
+        </h2>
+        <div id="c5" class="accordion-collapse collapse" data-bs-parent="#prog">
+          <div class="accordion-body">
+            <ul>
+              <li>Калькулятор собівартості яйця/кг м'яса та точки беззбитковості.</li>
+              <li>Ціни, акції, підписка "ящик яєць щотижня".</li>
+              <li>Робота з сусідами, кафе, фермерськими ринками.</li>
+              <li>Міні-брендинг і базовий контент-план.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center mt-5 reveal">
+      <a class="btn btn-accent btn-lg px-4" data-bs-toggle="modal" href="#signup"><i class="bi bi-rocket-takeoff me-2"></i>Почати навчання</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FORMAT ===== -->
+<section id="format" class="py-5">
+  <div class="container">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-8 mx-auto reveal animate-in">
+        <span class="subtitle fw-semibold">Формат</span>
+        <h2 class="section-title fw-bold">5 модулів + записи назавжди</h2>
+        <p>Онлайн-заняття у зручний час. Записи та матеріали залишаються у вас. Підтримка в чаті протягом 30 днів.</p>
+        <div class="row g-3 row-cols-1">
+          <div class="col">
+            <div class="card p-3 h-100">
+              <div class="icon mb-2"><i class="bi bi-camera-video"></i></div>
+              <div class="fw-bold">Детальні уроки</div>
+              <div class="muted small">Все що ви маєте знати.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card p-3 h-100">
+              <div class="icon mb-2"><i class="bi bi-clipboard2-check"></i></div>
+              <div class="fw-bold">Чек-листи й шаблони</div>
+              <div class="muted small">Раціони, гігієна, контроль здоров'я.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card p-3 h-100">
+              <div class="icon mb-2"><i class="bi bi-calculator"></i></div>
+              <div class="fw-bold">Економіка</div>
+              <div class="muted small">Прості таблиці для прорахунків.</div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card p-3 h-100">
+              <div class="icon mb-2"><i class="bi bi-people"></i></div>
+              <div class="fw-bold">Спільнота</div>
+              <div class="muted small">Підтримка однодумців та кураторів.</div>
+            </div>
+          </div>
+        </div>
+        <div class="card p-4 format-card mt-4">
+          <h5 class="fw-bold"><i class="bi bi-box-seam me-2"></i>Що входить</h5>
+          <ul class="mb-0">
+            <li>Конспекти та PDF-пам'ятки по годівлі/гігієні.</li>
+            <li>Відеоінструкції: інкубатор, випойка, гнізда.</li>
+            <li>Таблиці у Google Sheets для розрахунків.</li>
+            <li>Сертифікат проходження.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICE ===== -->
+<section id="price" class="bg-lush">
+  <div class="container">
+    <div class="row justify-content-center reveal">
+      <div class="col-lg-8">
+        <div class="text-center mb-4">
+          <h2 class="section-title fw-bold">Вартість та <span>пакети</span></h2>
+          <p class="muted">Старт кожного тижня. Кількість місць обмежена.</p>
+        </div>
+        <div class="d-flex flex-column flex-md-row gap-3">
+          <div class="card p-4 flex-fill">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-leaf me-2 text-success"></i><h5 class="fw-bold mb-0">Базовий</h5></div>
+            <p class="display-6 fw-bolder" style="color:var(--green-deep)">1990 грн</p>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-lg text-success me-1"></i>Усі уроки та записи</li>
+              <li><i class="bi bi-check-lg text-success me-1"></i>Матеріали та чек-листи</li>
+              <li><i class="bi bi-check-lg text-success me-1"></i>Сертифікат проходження</li>
+            </ul>
+            <a class="btn btn-accent w-100" data-bs-toggle="modal" href="#signup">Обрати</a>
+          </div>
+          <div class="card p-4 flex-fill border border-success">
+            <div class="d-flex align-items-center mb-2"><i class="bi bi-award me-2 text-success"></i><h5 class="fw-bold mb-0">Pro + наставник</h5></div>
+            <p class="display-6 fw-bolder" style="color:var(--green-deep)">3490 грн</p>
+            <ul class="list-unstyled">
+              <li><i class="bi bi-check-lg text-success me-1"></i>Все з базового</li>
+              <li><i class="bi bi-check-lg text-success me-1"></i>Перевірка ДЗ</li>
+              <li><i class="bi bi-check-lg text-success me-1"></i>Консультація 1:1</li>
+            </ul>
+            <a class="btn btn-accent w-100" data-bs-toggle="modal" href="#signup">Обрати</a>
+          </div>
+        </div>
+        <p class="text-center mt-4 small">Є питання? Перегляньте <a href="#faq" class="link-success">FAQ</a> нижче</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+  <div class="container">
+    <h2 class="section-title fw-bold text-center mb-4">Поширені <span>запитання</span></h2>
+    <div class="accordion reveal" id="acc">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="h1"><button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#f1">Коли краще купувати курчат? Якого віку брати?</button></h2>
+        <div id="f1" class="accordion-collapse collapse show" data-bs-parent="#acc">
+          <div class="accordion-body">Розбираємо сезонність, добових/підрощених курчат, карантин і адаптацію. Є чек-лист приймання.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="h2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f2">Що робити, якщо починають хворіти?</button></h2>
+        <div id="f2" class="accordion-collapse collapse" data-bs-parent="#acc">
+          <div class="accordion-body">Симптоми, ізоляція, базова аптечка, коли звертатись до ветлікаря. Профілактика кишкових інфекцій.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="h3"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f3">Як облаштувати курятник і доглядати?</button></h2>
+        <div id="f3" class="accordion-collapse collapse" data-bs-parent="#acc">
+          <div class="accordion-body">Вентиляція, підстилка, гнізда для домінантів (висота), освітлення, графік прибирання.</div>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="h4"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#f4">Вітаміни та частота годівлі?</button></h2>
+        <div id="f4" class="accordion-collapse collapse" data-bs-parent="#acc">
+          <div class="accordion-body">Коли доречні добавки, як не нашкодити. Режими годівлі для різних вікових груп.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER / CTA ===== -->
+<footer class="py-5">
+  <div class="container">
+    <div class="row g-4 align-items-center">
+      <div class="col-md-7">
+        <h5 class="fw-bold">Від курчати до прибутку © <span id="year"></span></h5>
+        <div class="mt-2 small">
+          <a href="#" class="link-success text-decoration-none">Договір публічної оферти</a>
+        </div>
+      </div>
+      <div class="col-md-5 text-md-end">
+        <div class="d-flex gap-2 justify-content-md-end align-items-center">
+          <a class="btn btn-outline-light" aria-label="TikTok" href="https://www.tiktok.com/@tsipko2024">
+            <i class="bi bi-tiktok"></i>
+          </a>
+          <a class="btn btn-accent" data-bs-toggle="modal" href="#signup"><i class="bi bi-chat-dots me-2"></i>Записатися на курс</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ===== SIGNUP MODAL ===== -->
+<div class="modal fade" id="signup" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="background:var(--cream)">
+      <div class="modal-header">
+        <h5 class="modal-title">Заявка на курс</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <form id="leadForm" class="row g-2 needs-validation" novalidate>
+          <div class="col-12">
+            <label class="form-label">Ім’я</label>
+            <input class="form-control" name="name" required>
+            <div class="invalid-feedback">Вкажіть ім’я.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" required>
+            <div class="invalid-feedback">Вкажіть коректний email.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Телефон</label>
+            <input class="form-control" name="phone" placeholder="+380XXXXXXXXX" pattern="^\+?\d{10,15}$" required>
+            <div class="invalid-feedback">Введіть телефон у міжнародному форматі.</div>
+          </div>
+          <div class="col-12">
+            <label class="form-label">Пакет</label>
+            <select class="form-select" name="plan">
+              <option>Базовий</option>
+              <option>Pro + наставник</option>
+            </select>
+          </div>
+          <div class="col-12 mt-2">
+            <button class="btn btn-accent w-100" type="submit">Надіслати</button>
+          </div>
+        </form>
+        <div id="thanks" class="text-center d-none">
+          <h5 class="fw-bold text-success"><i class="bi bi-check2-circle me-2"></i>Дякуємо!</h5>
+          <p>Ми зв’яжемося з вами протягом дня.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SCRIPTS ===== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Navbar color on scroll
+  const nav = document.querySelector('.navbar');
+  const setNav = ()=> nav.classList.toggle('scrolled', window.scrollY > 10);
+  setNav(); window.addEventListener('scroll', setNav);
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal on scroll
+  const revealObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('visible'); revealObs.unobserve(e.target); }});
+  },{threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=>revealObs.observe(el));
+
+  // Counters
+  const counters = document.querySelectorAll('.counter');
+  const counterObs = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const el = entry.target;
+        const target = +el.dataset.target;
+        let cur = 0; const step = Math.ceil(target/80);
+        const tick=()=>{ cur += step; if(cur>target) cur = target; el.textContent = cur; if(cur<target) requestAnimationFrame(tick); };
+        tick(); counterObs.unobserve(el);
+      }
+    });
+  },{threshold:.6});
+  counters.forEach(c=>counterObs.observe(c));
+
+  // Form validation + submit to backend
+  (() => {
+    const form = document.getElementById('leadForm');
+    form.addEventListener('submit', (event) => {
+      if (!form.checkValidity()) { event.preventDefault(); event.stopPropagation(); }
+      else {
+        event.preventDefault();
+        const payload = Object.fromEntries(new FormData(form).entries());
+        fetch('/api/applications', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).then(async (r)=>{
+          if(!r.ok) throw new Error('Failed');
+          return r.json();
+        }).then(()=>{
+          form.classList.add('d-none');
+          document.getElementById('thanks').classList.remove('d-none');
+        }).catch(()=>{
+          alert('Помилка відправки. Спробуйте ще раз.');
+        });
+      }
+      form.classList.add('was-validated');
+    }, false);
+  })();
+</script>
+</body>
+</html>
